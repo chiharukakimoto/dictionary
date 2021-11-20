@@ -1,0 +1,15 @@
+<div class="contents row">
+  <div class="content_post">
+    <%# if user_signed_in? && current_user.id == @tweet.user_id %>
+      <div class="more">
+        <span><%#= %></span>
+        <ul class="more_list">
+          <li>
+            <%= link_to '編集', edit_word(@word.id)%>
+          </li>
+          <li>
+            <%= link_to '削除', word_path(@word.id), method: :delete %>
+          </li>
+        </ul>
+      </div>
+    <%# end %>

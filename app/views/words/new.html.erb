@@ -1,0 +1,18 @@
+<div class="contents row">
+  <div class="container">
+    <h3>登録</h3>
+    <%= form_with(model: @word, local: true) do |f| %>
+      <%= render 'shared/error_messages', model: f.object %>
+
+      <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"select-box", id:"item-category"}) %>
+      <%= f.text_field :jiantizi, placeholder: "简体字" %>
+      <%= f.text_field :fantizi, placeholder: "繁体字" %>
+      <%= f.text_field :pronunciation_c, placeholder: "发音" %>
+      <%= f.text_field :english, placeholder: "english" %>
+      <%= f.text_field :pronunciation_e, placeholder: "pronunciation" %>
+      <%= f.text_area :mean, placeholder: "意思", rows: "5" %>
+      <%= f.text_area :memo, placeholder: "memo", rows: "5" %>
+      <%= f.submit "SEND" %>
+    <% end %>
+  </div>
+</div>
