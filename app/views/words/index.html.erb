@@ -2,16 +2,20 @@
   <%#= form.text_field :keyword, placeholder: "投稿を検索する", class: "search-input" %>
   <%#= form.submit "検索", class: "search-btn" %>
 <%# end %>
-  
-<%= link_to "単語登録", new_word_path, class: "post" %>
-  <% @words.each do |word| %>
-    <%= word.jiantizi %><%= word.pronunciation_c %>
 
-  <li>
-    <%= link_to '編集', edit_word_path(word.id), method: :get %>
-  </li>
-  <li>
-    <%= link_to '削除', word_path(word.id), method: :delete %>
-  </li>
-  
+<div class="main-container">
+  <h1>This is my Portfolio Site</h1>
+  <p>これは私のポートフォリオサイトです</p>
+<%= link_to "新規登録", new_word_path, class: "post" %>
+  <% @words.each do |word| %>
+    <%= link_to word_path(word.id) do %>
+    
+    <li>
+      <%= word.jiantizi %><%= word.pronunciation_c %>
+      <%= link_to '詳細', word_path(word.id), method: :get %>
+      <%= link_to '編集', edit_word_path(word.id) %>
+      <%= link_to '削除', word_path(word.id), method: :delete %>
+    </li>
   <% end %>
+<% end %>
+</div>

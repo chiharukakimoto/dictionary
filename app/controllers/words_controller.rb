@@ -1,6 +1,6 @@
 class WordsController < ApplicationController
   def index
-    @words = Word.all
+    @words = Word.all.order(:pronunciation_c)
   end
 
   def new
@@ -17,6 +17,15 @@ class WordsController < ApplicationController
   end
 
   def edit
+    @word = Word.find(params[:id])
+  end
+
+  def update
+    word = Word.find(params[:id])
+    word.update(word_params)
+  end
+
+  def show
     @word = Word.find(params[:id])
   end
 

@@ -1,15 +1,39 @@
-<div class="contents row">
-  <div class="content_post">
-    <%# if user_signed_in? && current_user.id == @tweet.user_id %>
-      <div class="more">
-        <span><%#= %></span>
-        <ul class="more_list">
-          <li>
-            <%= link_to '編集', edit_word(@word.id)%>
-          </li>
-          <li>
-            <%= link_to '削除', word_path(@word.id), method: :delete %>
-          </li>
-        </ul>
-      </div>
-    <%# end %>
+  <%= link_to "編集", edit_word_path(@word.id), class: "item-red-btn" %>
+  <%= link_to "削除", word_path(@word.id), method: :delete, class: "item-destroy" %>
+  <%= link_to "一覧に戻る", root_path(@word.id) ,class: "item-red-btn"%>
+
+      <div class="item-explain-box">
+    </div>
+    <span><%= @word.jiantizi %></span>
+    <table class="detail-table">
+      <tbody>
+        <tr>
+          <th class="detail-item">简体字</th>
+          <td class="detail-value"><%= @word.jiantizi %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">繁体字</th>
+          <td class="detail-value"><%= @word.fantizi %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">发音</th>
+          <td class="detail-value"><%= @word.pronunciation_c %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">English</th>
+          <td class="detail-value"><%= @word.english %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">Pronunciation</th>
+          <td class="detail-value"><%= @word.pronunciation_e %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">意味</th>
+          <td class="detail-value"><%= @word.mean %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">メモ</th>
+          <td class="detail-value"><%= @word.memo %></td>
+        </tr>
+      </tbody>
+    </table>
