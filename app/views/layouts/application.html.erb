@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Choice</title>
+    <title>dictionary</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +10,16 @@
   </head>
 
   <body>
+  <div class="main-container">
+    <div class="left-content">
+      <%= image_tag 'moon_cake.jpg', size: '1000x1100', alt: "moon_cake" %>
+    </div>
+  </div>
     <%= yield %>
+    <footer>
+      <p>
+        chiharu's app
+      </p>
+    </footer>
   </body>
 </html>

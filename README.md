@@ -40,14 +40,16 @@ belongs_to :word
 
 ## words テーブル
 
-| Column        | Type    | Options     |
-| ------------- | ------- | ----------- |
-| jiantizi      | text    | null: false |
-| fantizi       | text    | null: false |
-| english       | text    | null: false |
-| pronunciation | text    | null: false |
-| category_id   | integer | null: false |
-| mean          | text    | null: false |
-| memo          | text    | null: false |
+| Column          | Type       | Options                        |
+| --------------- | ---------- | ------------------------------ |
+| user            | references | null: false, foreign_key: true |
+| jiantizi        | text       | null: false                    |
+| fantizi         | text       | null: false                    |
+| english         | text       | null: false                    |
+| pronunciation_c | text       | null: false                    |
+| pronunciation_e | text       | null: false                    |
+| category_id     | integer    | null: false                    |
+| mean            | text       | null: false                    |
+| memo            | text       | null: false                    |
 
 has_many :users
