@@ -1058,8 +1058,6 @@ footer p {
   width: 10%;
 }
 
-.main-container {
-  background-image: url("/images/moon_cake.jpg");
-  height: 800px;
-  background-size: cover;
+.left-content {
+  color: red;
 }
