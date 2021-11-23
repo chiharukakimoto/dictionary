@@ -5,16 +5,13 @@
 
 <link rel="stylesheet" href="style.css">
 
-<%= link_to "新規登録", new_word_path, class: "post" %>
-  <% @words.each do |word| %>
-    <%= link_to word_path(word.id) do %>
-    
+<% @words.each do |word| %>
+  <%= link_to word_path(word.id) do %>
     <li>
       <%= word.jiantizi %><%= word.pronunciation_c %>
       <%= link_to '詳細', word_path(word.id), method: :get %>
       <%= link_to '編集', edit_word_path(word.id) %>
       <%= link_to '削除', word_path(word.id), method: :delete %>
     </li>
-    </div>
   <% end %>
 <% end %>
