@@ -1,4 +1,6 @@
 class WordsController < ApplicationController
+  before_action :move_to_index, except: [:index, :show]
+
   def index
     @words = Word.all.order(:pronunciation_c)
   end
@@ -8,7 +10,12 @@ class WordsController < ApplicationController
   end
 
   def create
-    Word.create(word_params)
+    @word = Word.create(word_params)
+    if @word.save
+      redirect_to root_path
+    else
+      render :new
+    end
   end
 
   def destroy
@@ -31,6 +38,12 @@ class WordsController < ApplicationController
 
   private
   def word_params
-    params.require(:word).permit(:jiantizi, :fantizi, :english, :pronunciation_c, :pronunciation_e, :category_id, :mean, :memo)
+    params.require(:word).permit(:jiantizi, :fantizi, :english, :pronunciation_c, :pronunciation_e, :category_id, :mean, :memo).merge(user_id: current_user.id)
+  end
+
+  def move_to_index
+    unless user_signed_in?
+      redirect_to action: :index
+    end
   end
 end

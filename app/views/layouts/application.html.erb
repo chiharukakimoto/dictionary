@@ -2,6 +2,24 @@
 <html>
   <head>
     <title>dictionary</title>
+     <% if user_signed_in? %>
+          <div class="user_nav grid-6">
+            <span><%= "#{current_user.nickname}的词典" %>
+            <ul class="user__info">
+              <li>
+                <%= link_to "新規登録", new_word_path, class: "post" %>    
+                <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+              </li>
+            </ul>
+          </span>
+          </div>
+        <% else %>
+          <div class="grid-6">
+            <%= link_to "ログイン", new_user_session_path, class: "post" %>
+            <%= link_to "新規登録", new_user_registration_path, class: "post" %>
+          </div>
+        <% end %>
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,15 +28,10 @@
   </head>
 
   <body>
-  <div class="main-container">
-    <div class="left-content">
-      <%= image_tag 'moon_cake.jpg', size: '1000x1100', alt: "moon_cake" %>
-    </div>
-  </div>
     <%= yield %>
     <footer>
       <p>
-        chiharu's app
+        <span><%= "#{current_user.nickname}的词典" %>
       </p>
     </footer>
   </body>
