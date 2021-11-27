@@ -2,36 +2,36 @@
 <html>
   <head>
     <title>dictionary</title>
-     <% if user_signed_in? %>
-          <div class="user_nav grid-6">
-            <span><%= "#{current_user.nickname}的词典" %>
-            <ul class="user__info">
-              <li>
-                <%= link_to "新規登録", new_word_path, class: "post" %>    
-                <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-              </li>
-            </ul>
-          </span>
-          </div>
-        <% else %>
-          <div class="grid-6">
-            <%= link_to "ログイン", new_user_session_path, class: "post" %>
-            <%= link_to "新規登録", new_user_registration_path, class: "post" %>
-          </div>
-        <% end %>
-
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <% if user_signed_in? %>
+      <div class="user_nav grid-6">
+        <ul class="user__info">
+          <span><%= link_to "#{current_user.nickname}の辞書", root_path %>
+          <li>
+            <%= link_to "新規登録", new_word_path, class: "post" %>    
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "post" %>
+          </li>
+          </span>
+        </ul>
+      </div>
+    <% else %>
+      <div class="grid-6">
+        <%= link_to "ログイン", new_user_session_path, class: "post" %>
+        <%= link_to "新規登録", new_user_registration_path, class: "post" %>
+      </div>
+    <% end %>
   </head>
 
   <body>
     <%= yield %>
     <footer>
       <p>
-        <span><%= "#{current_user.nickname}的词典" %>
+        <span><%= "#{current_user.nickname}の辞書" %>
       </p>
     </footer>
   </body>
