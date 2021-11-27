@@ -5,13 +5,14 @@ class Word < ApplicationRecord
 
   def self.search(search)
     if search != ""
-      Word.where('jiantizi LIKE(?)', "%#{search}%")
-    elsif
-      Word.where('fantizi LIKE(?)', "%#{search}%")
-    elsif
-      Word.where('pronunciation_c LIKE(?)', "%#{search}%")
-    elsif
-      Word.where('english LIKE(?)', "%#{search}%")
+      Word.where('fantizi LIKE(?)' || 'jiantizi LIKE(?)' || 'pronunciation_c LIKE(?)' || 'english LIKE(?)', "%#{search}%")
+      #Word.where('jiantizi LIKE(?)', "%#{search}%")
+    #elsif Word.exists?(jiantizi: "%#{search}%")
+    #  Word.where('fantizi LIKE(?)',"%#{search}%")
+    #elsif unless jiantizi && fantizi
+      #Word.where('pronunciation_c LIKE(?)',"%#{search}%")
+    #elsif
+    #  Word.where('english LIKE(?)',"%#{search}%")
     else
       Word.all
     end

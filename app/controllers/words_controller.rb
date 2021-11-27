@@ -29,7 +29,7 @@ class WordsController < ApplicationController
   end
 
   def update
-    word.update(word_params)
+    @word.update(word_params)
   end
 
   def show
@@ -37,6 +37,9 @@ class WordsController < ApplicationController
 
   def search
     @words = Word.search(params[:keyword])
+    if @words != nil
+      render :index
+    end
   end
 
   private
