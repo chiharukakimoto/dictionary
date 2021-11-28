@@ -56,4 +56,5 @@ class WordsController < ApplicationController
   def set_word
     @word = Word.find(params[:id])
   end
+
 end
