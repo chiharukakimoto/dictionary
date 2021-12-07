@@ -25,7 +25,7 @@ class WordsController < ApplicationController
   end
 
   def edit
-    if current_user.id != @word.id
+    if current_user.id != @word.user_id
       redirect_to root_path
     end
   end

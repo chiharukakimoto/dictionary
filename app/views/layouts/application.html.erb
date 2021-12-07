@@ -4,34 +4,38 @@
     <title>dictionary</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-
-    <% if user_signed_in? %>
-      <div class="user_nav grid-6">
-        <ul class="user__info">
-          <span><%= link_to "#{current_user.nickname}の辞書", root_path %>
+<body>
+  <header class="header">
+    <div class="header__bar row">
+      <h1 class="grid">WordList</h1>
+      <% if user_signed_in? %>
+          <span><%= link_to "#{current_user.nickname}の単語帳", root_path, class:"user" %>
           <li>
             <%= link_to "新規登録", new_word_path, class: "post" %>    
             <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "post" %>
           </li>
           </span>
-        </ul>
-      </div>
     <% else %>
-      <div class="grid-6">
+      <div class="grid">
         <%= link_to "ログイン", new_user_session_path, class: "post" %>
         <%= link_to "新規登録", new_user_registration_path, class: "post" %>
       </div>
     <% end %>
+    </div>
+    <div class="search">
+      <%= form_with(url: search_words_path, local: true, method: :get, class: "search-form") do |form| %>
+      <%= form.text_field :keyword, placeholder: "単語を検索", class: "search-input" %>
+      <%= form.submit "Search", class: "search-btn" %>
+      <% end %>
+    </div>
   </head>
-
-  <body>
     <%= yield %>
     <footer>
       <p>
-        <span><%= "辞書" %>
+        <span><%= "単語帳" %>
       </p>
     </footer>
   </body>

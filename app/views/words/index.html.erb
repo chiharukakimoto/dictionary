@@ -1,14 +1,11 @@
-<%= form_with(url: search_words_path, local: true, method: :get, class: "search-form") do |form| %>
-  <%= form.text_field :keyword, placeholder: "単語を検索する", class: "search-input" %>
-  <%= form.submit "検索", class: "search-btn" %>
-<% end %>
-
-<% @words.each do |word| %>
-  <%= link_to word_path(word.id) do %>
-  <ul class="more_list">
-    <li>
-      <%= word.jiantizi %><%= word.pronunciation_c %>
-    </li>
-  </ul>
+<div class="wrapper">
+  <div class="main">
+  <% @words.each do |word| %>
+    <%= link_to word_path(word.id) do %>
+      <li>
+        <%= word.jiantizi %><%= word.pronunciation_c %>
+      </li>
+    </ul>
+    <% end %>
   <% end %>
-<% end %>
+</div>
