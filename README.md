@@ -66,3 +66,12 @@ has_many :users
 【開発環境】
 ruby 2.6.5p114
 Rails 6.0.4.1
+
+## validation input data
+[Reference](https://shinya131-note.hatenablog.jp/entry/2015/07/10/004853)
+```bash
+cat Unihan_Readings.txt | awk '$2 ~ /kJapaneseKun/ {print $1}' > japanese_kun
+cat Unihan_Readings.txt | awk '$2 ~ /kJapaneseOn/ {print $1}'  > japanese_on
+cat Unihan_Readings.txt | awk '$2 ~ /kMandarin/ {print $1}'    > mandarin
+cat Unihan_Readings.txt | awk '$2 ~ /kCantonese/ {print $1}'   > cantonese
+```
