@@ -604,18 +604,8 @@ ul li {
     padding: 0 20px !important;
   }
 
-  .row .grid-1,
-  .row .grid-2,
-  .row .grid-3,
-  .row .grid-4,
-  .row .grid-5,
-  .row .grid-6,
-  .row .grid-7,
-  .row .grid-8,
-  .row .grid-9,
-  .row .grid-10,
-  .row .grid-11,
-  .row .grid-12 {
+
+  .row .grid-6,{
     float: none;
     width: 100% !important;
     margin: 0 !important;
@@ -1104,4 +1094,10 @@ footer p {
   bottom: 10px;
   left: 0;
   right: 0;
+}
+
+li{
+  padding-left: 30px;
+  padding-bottom: 10px;
+  list-style: inside;
 }

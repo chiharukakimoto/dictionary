@@ -32,8 +32,8 @@ https://dictionary-36185.herokuapp.com/
 単語削除機能
 単語検索機能
 
-【】
-実装した機能についての画像やGIFおよびその説明	実装した機能について、それぞれどのような特徴があるのかを列挙する形で記述。
+【実装動画】
+[![Image from Gyazo](https://i.gyazo.com/f94db5851cc07fe0616bc50912a2dc92.gif)](https://gyazo.com/f94db5851cc07fe0616bc50912a2dc92)
 
 【データベース設計】
 

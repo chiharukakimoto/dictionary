@@ -1,8 +1,8 @@
-class MandarinValidator < ActiveModel::EachValidator
+class CantoneseValidator < ActiveModel::EachValidator
 
   def validate_each(record, attribute, value) # バリデーションメソッド
-    if mandarin?(value)
-      record.errors.add attribute << (options[:message] || "is not Jiantizi")
+    if cantonese?(value)
+      record.errors.add attribute, (options[:message] || "is not Fantizi")
       # record.errors.add(attribute, " は中国語ではありません。")
     end
   end
