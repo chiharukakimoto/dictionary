@@ -1,14 +1,8 @@
 class MandarinValidator < ActiveModel::EachValidator
 
-#   def validate_each(record, attribute, value)
-#     if value.empty? || value.count < 2
-#         record.errors[:attribute] << (options[:message] || "2文字以上で入力してください")
-#     end
-# end
-
   def validate_each(record, attribute, value) # バリデーションメソッド
-    if value.empty?
-      record.errors[:attribute] << (options[:message] || "is not Mandarin")
+    unless is_mandarin?(value)
+      record.errors[:jiantizi] << (options[:message] || "is not Jiantizi")
       # record.errors.add(attribute, " は中国語ではありません。")
     end
   end
@@ -52,17 +46,18 @@ class MandarinValidator < ActiveModel::EachValidator
 
   # 文字列から中国語らしき文字をselectする。
   # なぜか漢字以外のcodepointを与えると期待した動作をしないので、漢字のみで判定する。
-  def select_chinese_and_not_japanese(survey_target_string)
+  def is_mandarin?(survey_target_string)
     survey_target_string.split('').select do |character|
-      next if !mandarin?(character)
-
       codepoint = to_codepoint(character)
-      next if japanese_kun?(codepoint) || japanese_on?(codepoint)
-      next if !(cantonese?(codepoint))
-
-      true
+      # binding.pry
+      unless mandarin?(codepoint)
+        return false
+      # next if japanese_kun?(codepoint) || japanese_on?(codepoint)
+      # next if !(cantonese?(codepoint))
     end
+    return true
   end
+end
 end
 
 
