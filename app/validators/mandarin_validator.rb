@@ -46,18 +46,30 @@ class MandarinValidator < ActiveModel::EachValidator
 
   # 文字列から中国語らしき文字をselectする。
   # なぜか漢字以外のcodepointを与えると期待した動作をしないので、漢字のみで判定する。
+  
   def is_mandarin?(survey_target_string)
     survey_target_string.split('').select do |character|
-      codepoint = to_codepoint(character)
-      # binding.pry
-      unless mandarin?(codepoint)
+      if !han?(character)
         return false
-      # next if japanese_kun?(codepoint) || japanese_on?(codepoint)
-      # next if !(cantonese?(codepoint))
+      end
+      codepoint = to_codepoint(character)
+      if japanese_kun?(codepoint) || japanese_on?(codepoint)
+        return false
+      end
+      if cantonese?(codepoint)
+        return false
+      end
     end
     return true
   end
+  
+  # def is_mandarin?(survey_target_string)
+  #   survey_target_string.split('').select do |character|
+  #     codepoint = to_codepoint(character)
+  #     unless mandarin?(codepoint)
+  #       return false
+  #     end
+  #   end
+  #   return true
+  # end
 end
-end
-
-
