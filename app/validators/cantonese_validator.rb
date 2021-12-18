@@ -1,11 +1,11 @@
 class CantoneseValidator < ActiveModel::EachValidator
 
-  # def validate_each(record, attribute, value) # バリデーションメソッド
-  #   if cantonese?(value)
-  #     record.errors.add attribute, (options[:message] || "is not Chinese")
-  #     # record.errors.add(attribute, " は中国語ではありません。")
-  #   end
-  # end
+  def validate_each(record, attribute, value) # バリデーションメソッド
+    unless is_cantonese?(value)
+      record.errors.add [:jiantizi] << (options[:message] || "is not Chinese")
+      # record.errors.add(attribute, " は中国語ではありません。")
+    end
+  end
 
   def validate_each(record, attribute, value) # バリデーションメソッド
     if value.empty?

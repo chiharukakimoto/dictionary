@@ -6,7 +6,7 @@ class Word < ApplicationRecord
   # validates :category_id, numericality: { other_than: 1 , message: "can't be blank"}
   #with_options presence: true do
   validates :jiantizi, mandarin: true
-  #validates :fantizi, cantonese: true
+  validates :fantizi, cantonese: true
   # validates :pronunciation_c
   #end
   #validates :english, format: {with: /\A[a-zA-Z0-9]+\z/}

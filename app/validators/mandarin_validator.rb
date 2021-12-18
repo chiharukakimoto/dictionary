@@ -2,7 +2,7 @@ class MandarinValidator < ActiveModel::EachValidator
 
   def validate_each(record, attribute, value) # バリデーションメソッド
     unless is_mandarin?(value)
-      record.errors[:jiantizi] << (options[:message] || "is not Jiantizi")
+      record.errors[:jiantizi] << (options[:message] || "is not Chinese")
       # record.errors.add(attribute, " は中国語ではありません。")
     end
   end
@@ -53,6 +53,7 @@ class MandarinValidator < ActiveModel::EachValidator
         return false
       end
       codepoint = to_codepoint(character)
+      binding.pry
       if japanese_kun?(codepoint) || japanese_on?(codepoint)
         return false
       end

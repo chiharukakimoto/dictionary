@@ -1,23 +1,24 @@
-アプリケーション名
+アプリ名
+
 dictionary
 
 【アプリケーション概要】
+
 普段よく使う中国語や英語を登録して隙間時間で確認、学習ができる。
 また、他ユーザーが登録した単語も見ることができ相互学習ができる。
 
-【URL】
+【本番環境】
+
 https://dictionary-36185.herokuapp.com/
 
-
 【アカウント】
+
 テスト用アカウント：qianchun@hotmail.co.jp
+
 パスワード:chiharu0308
 
-【利用方法】
-テレビの字幕や台湾、香港に旅行に行った際や日常生活のふとした時に気になった身近にある中国語を登録する。
-登録時に簡体字と繁体字も一緒に登録することにより繁体字も読めるようにする。
+【作成背景】
 
-【目指した課題解決】
 中国語学習者に簡体字と繁体字の見比べられる単語帳等して活用してもらいたいと開発した。
 一般的に中国語学習者は簡体字で中国語を読み書きできる様に学ぶ。
 しかし、中国語には簡体字と繁体字があり、テレビの字幕や台湾、香港では繁体字が使用される。
@@ -25,17 +26,66 @@ https://dictionary-36185.herokuapp.com/
 この問題を解決するために中国語学習者が普段使う中国語の繁体字を登録、目に触れることで自然と記憶、書けないけど読むことはできる状態を目指している。
 また、国際社会での主要言語は英語のため、中国語で表現する場合英語では？とふとした疑問を調べて気軽に登録できると連想ゲームの様に語学の幅が広がるのではないかと考えた。
 
-【要件定義】
-ユーザー登録機能
-単語登録機能
-単語編集機能
-単語削除機能
-単語検索機能
+【DEMO】
 
-【実装動画】
-[![Image from Gyazo](https://i.gyazo.com/f94db5851cc07fe0616bc50912a2dc92.gif)](https://gyazo.com/f94db5851cc07fe0616bc50912a2dc92)
+トップページ
 
-【データベース設計】
+[![Image from Gyazo](https://i.gyazo.com/4aa7590ad39d987af52dbf251bed1a74.png)](https://gyazo.com/4aa7590ad39d987af52dbf251bed1a74)
+
+新規登録画面
+
+[![Image from Gyazo](https://i.gyazo.com/0704a764be505f8080095deabc2f0cfb.png)](https://gyazo.com/0704a764be505f8080095deabc2f0cfb)
+
+詳細表示画面
+
+[![Image from Gyazo](https://i.gyazo.com/02b56f8916378f2a1a59a15f0fd6d6f4.png)](https://gyazo.com/02b56f8916378f2a1a59a15f0fd6d6f4)
+
+編集・削除画面
+
+[![Image from Gyazo](https://i.gyazo.com/cd81cb4dcabbb0bea3e700ce85bab534.png)](https://gyazo.com/cd81cb4dcabbb0bea3e700ce85bab534)
+
+
+【工夫したポイント】
+
+検索機能;複数の条件で検索ができるように実装。
+
+バリデーション;中国語漢字であれば登録出来る様に実装。
+
+【開発環境】
+
+バックエンド
+
+Ruby, Ruby on Rails
+
+ruby 2.6.5p114
+Rails 6.0.4.1
+
+フロントエンド
+
+HTML, CSS
+
+データベース
+
+MySQL
+
+インフラ
+
+アプリケーションサーバー(本番環境)
+heroku
+
+ソース管理
+GitHub, GitHubDesktop
+
+エディタ
+VSCode
+
+【課題や今後実装したい機能】
+中国語漢字と日本漢字は似たものもあり、厳密に分けるのが課題。
+中国語のバリデーションをオリジナルで作成したが、簡体字と繁体字で分けるためには現在参考にしているデータでは重複しており綺麗に分けることができていない。
+現在バリデーションの精度を上げるための方法を検討中。
+
+
+【DB設計】
 
 ## users テーブル
 
@@ -62,10 +112,6 @@ belongs_to :word
 | memo            | text       | null: false                    |
 
 has_many :users
-
-【開発環境】
-ruby 2.6.5p114
-Rails 6.0.4.1
 
 ## validation input data
 [Reference](https://shinya131-note.hatenablog.jp/entry/2015/07/10/004853)
