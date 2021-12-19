@@ -2,14 +2,7 @@ class CantoneseValidator < ActiveModel::EachValidator
 
   def validate_each(record, attribute, value) # バリデーションメソッド
     unless is_cantonese?(value)
-      record.errors.add [:jiantizi] << (options[:message] || "is not Chinese")
-      # record.errors.add(attribute, " は中国語ではありません。")
-    end
-  end
-
-  def validate_each(record, attribute, value) # バリデーションメソッド
-    if value.empty?
-      record.errors[:fantizi] << (options[:message] || "is not Fantizi")
+      record.errors[:fantizi] << (options[:message] || "is not Chinese")
       # record.errors.add(attribute, " は中国語ではありません。")
     end
   end
@@ -51,19 +44,35 @@ class CantoneseValidator < ActiveModel::EachValidator
     character =~ /\p{Han}/
   end
 
-  # 文字列から中国語らしき文字をselectする。
-  # なぜか漢字以外のcodepointを与えると期待した動作をしないので、漢字のみで判定する。
-  def select_chinese_and_not_japanese(survey_target_string)
+  def is_cantonese?(survey_target_string)
     survey_target_string.split('').select do |character|
-      next if !han?(character)
-
+      if !han?(character)
+        return false
+      end
       codepoint = to_codepoint(character)
-      next if japanese_kun?(codepoint) || japanese_on?(codepoint)
-      next if !(cantonese?(codepoint) || mandarin?(codepoint))
-
-      true
+      if japanese_kun?(codepoint) || japanese_on?(codepoint)
+        return false
+      end
+      if mandarin?(codepoint)
+        return false
+      end
     end
+    return true
   end
+
+  # # 文字列から中国語らしき文字をselectする。
+  # # なぜか漢字以外のcodepointを与えると期待した動作をしないので、漢字のみで判定する。
+  # def select_chinese_and_not_japanese(survey_target_string)
+  #   survey_target_string.split('').select do |character|
+  #     next if !han?(character)
+
+  #     codepoint = to_codepoint(character)
+  #     next if japanese_kun?(codepoint) || japanese_on?(codepoint)
+  #     next if !(cantonese?(codepoint) || mandarin?(codepoint))
+
+  #     true
+  #   end
+  # end
 end
 
 
