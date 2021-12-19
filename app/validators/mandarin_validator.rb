@@ -62,14 +62,4 @@ class MandarinValidator < ActiveModel::EachValidator
     end
     return true
   end
-  
-  # def is_mandarin?(survey_target_string)
-  #   survey_target_string.split('').select do |character|
-  #     codepoint = to_codepoint(character)
-  #     unless mandarin?(codepoint)
-  #       return false
-  #     end
-  #   end
-  #   return true
-  # end
 end
