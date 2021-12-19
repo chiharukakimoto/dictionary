@@ -1,8 +1,10 @@
 class WordsController < ApplicationController
-  before_action :move_to_index, except: [:index, :show]
+  before_action :set_word, only: [:destroy, :edit, :update, :show]
+  before_action :move_to_index, except: [:index, :show, :search]
 
   def index
     @words = Word.all.order(:pronunciation_c)
+    @words = Word.includes(:user)
   end
 
   def new
@@ -19,21 +21,27 @@ class WordsController < ApplicationController
   end
 
   def destroy
-    word = Word.find(params[:id])
-    word.destroy
+    @word.destroy
   end
 
   def edit
-    @word = Word.find(params[:id])
+    if current_user.id != @word.user_id
+      redirect_to root_path
+    end
   end
 
   def update
-    word = Word.find(params[:id])
-    word.update(word_params)
+    @word.update(word_params)
   end
 
   def show
-    @word = Word.find(params[:id])
+  end
+
+  def search
+    @words = Word.search(params[:keyword])
+    if @words != nil
+      render :index
+    end
   end
 
   private
@@ -46,4 +54,9 @@ class WordsController < ApplicationController
       redirect_to action: :index
     end
   end
+
+  def set_word
+    @word = Word.find(params[:id])
+  end
+
 end

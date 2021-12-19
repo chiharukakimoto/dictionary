@@ -1,17 +1,15 @@
-<%#= form_with(url: search_words_path, local: true, method: :get, class: "search-form") do |form| %>
-  <%#= form.text_field :keyword, placeholder: "投稿を検索する", class: "search-input" %>
-  <%#= form.submit "検索", class: "search-btn" %>
-<%# end %>
-
-<link rel="stylesheet" href="style.css">
-
-<% @words.each do |word| %>
-  <%= link_to word_path(word.id) do %>
-    <li>
-      <%= word.jiantizi %><%= word.pronunciation_c %>
-      <%= link_to '詳細', word_path(word.id), method: :get %>
-      <%= link_to '編集', edit_word_path(word.id) %>
-      <%= link_to '削除', word_path(word.id), method: :delete %>
-    </li>
+<div class="wrapper">
+    <div class="search">
+      <%= form_with(url: search_words_path, local: true, method: :get, class: "search-form") do |form| %>
+      <%= form.text_field :keyword, placeholder: "単語を検索", class: "search-input" %>
+      <%= form.submit "Search", class: "search-btn" %>
+      <% end %>
+    </div>
+  <% @words.each do |word| %>
+    <%= link_to word_path(word.id) do %>
+      <li>
+        <%= word.jiantizi %><%= word.pronunciation_c %>
+      </li>
+    <% end %>
   <% end %>
-<% end %>
+</div>
