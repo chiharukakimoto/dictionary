@@ -1,8 +1,8 @@
-アプリ名
+## 【アプリ名】
 
 dictionary
 
-【アプリケーション概要】
+## 【アプリケーション概要】
 
 普段よく使う中国語や英語を登録して隙間時間で確認、学習ができる。
 また、他ユーザーが登録した単語も見ることができ相互学習ができる。
@@ -11,13 +11,13 @@ dictionary
 
 https://dictionary-36185.herokuapp.com/
 
-【アカウント】
+## 【アカウント】
 
 テスト用アカウント：qianchun@hotmail.co.jp
 
 パスワード:chiharu0308
 
-【作成背景】
+## 【作成背景】
 
 中国語学習者に簡体字と繁体字の見比べられる単語帳等して活用してもらいたいと開発した。
 一般的に中国語学習者は簡体字で中国語を読み書きできる様に学ぶ。
@@ -26,7 +26,7 @@ https://dictionary-36185.herokuapp.com/
 この問題を解決するために中国語学習者が普段使う中国語の繁体字を登録、目に触れることで自然と記憶、書けないけど読むことはできる状態を目指している。
 また、国際社会での主要言語は英語のため、中国語で表現する場合英語では？とふとした疑問を調べて気軽に登録できると連想ゲームの様に語学の幅が広がるのではないかと考えた。
 
-【DEMO】
+## 【DEMO】
 
 トップページ
 
@@ -45,13 +45,13 @@ https://dictionary-36185.herokuapp.com/
 [![Image from Gyazo](https://i.gyazo.com/cd81cb4dcabbb0bea3e700ce85bab534.png)](https://gyazo.com/cd81cb4dcabbb0bea3e700ce85bab534)
 
 
-【工夫したポイント】
+## 【工夫したポイント】
 
 検索機能;複数の条件で検索ができるように実装。
 
 バリデーション;中国語漢字であれば登録出来る様に実装。
 
-【開発環境】
+## 【開発環境】
 
 バックエンド
 
@@ -84,9 +84,9 @@ VSCode
 中国語のバリデーションをオリジナルで作成したが、簡体字と繁体字で分けるためには現在参考にしているデータでは重複しており綺麗に分けることができていない。
 現在バリデーションの精度を上げるための方法を検討中。
 
-【DB設計】
+## 【DB設計】
 
-## users テーブル
+users テーブル
 
 | Column     | Type   | Options     |
 | ---------- | ------ | ----------- |
@@ -96,7 +96,7 @@ VSCode
 
 belongs_to :word
 
-## words テーブル
+words テーブル
 
 | Column          | Type       | Options                        |
 | --------------- | ---------- | ------------------------------ |
@@ -112,8 +112,8 @@ belongs_to :word
 
 has_many :users
 
-## validation input data
-[Reference](https://shinya131-note.hatenablog.jp/entry/2015/07/10/004853)
+validation input data
+## [Reference](https://shinya131-note.hatenablog.jp/entry/2015/07/10/004853)
 ```bash
 cat Unihan_Readings.txt | awk '$2 ~ /kJapaneseKun/ {print $1}' > japanese_kun
 cat Unihan_Readings.txt | awk '$2 ~ /kJapaneseOn/ {print $1}'  > japanese_on
