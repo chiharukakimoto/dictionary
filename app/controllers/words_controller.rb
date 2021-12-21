@@ -31,7 +31,11 @@ class WordsController < ApplicationController
   end
 
   def update
-    @word.update(word_params)
+    if @word.update(word_params)
+      redirect_to word_path(@word.id)
+    else
+      render :edit
+    end
   end
 
   def show
